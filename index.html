@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Grace & Josh — Bali Wedding, 5 October 2027" />
+  <title>Grace & Josh · Bali 2027</title>
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Noto+Serif+SC:wght@400;500;600&family=Inter:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --ivory:#f7f2ea;
+      --paper:#fffdf9;
+      --rose:#b78d86;
+      --sage:#99a18f;
+      --espresso:#4a3d37;
+      --ink:#2d2927;
+      --line:rgba(74,61,55,.16);
+      --shadow:0 24px 60px rgba(74,61,55,.12);
+    }
+
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:"Inter",system-ui,sans-serif;
+      background:var(--ivory);
+      color:var(--ink);
+      line-height:1.7;
+    }
+
+    a{color:inherit;text-decoration:none}
+    img{max-width:100%;display:block}
+
+    .hero{
+      min-height:100vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:32px 20px;
+      position:relative;
+      overflow:hidden;
+      background:
+        radial-gradient(circle at 20% 20%, rgba(183,141,134,.25), transparent 34%),
+        radial-gradient(circle at 80% 70%, rgba(153,161,143,.23), transparent 34%),
+        linear-gradient(145deg,#f8f1e9 0%,#eee2d7 48%,#e7ddd1 100%);
+    }
+
+    .hero::before,
+    .hero::after{
+      content:"";
+      position:absolute;
+      border:1px solid rgba(74,61,55,.12);
+      border-radius:50%;
+    }
+    .hero::before{width:430px;height:430px;left:-180px;top:-160px}
+    .hero::after{width:520px;height:520px;right:-220px;bottom:-220px}
+
+    .hero-inner{position:relative;z-index:2;max-width:900px}
+    .eyebrow{
+      font-size:.78rem;
+      letter-spacing:.3em;
+      text-transform:uppercase;
+      color:var(--espresso);
+      margin-bottom:16px;
+    }
+    h1,h2,h3{
+      font-family:"Cormorant Garamond","Noto Serif SC",serif;
+      font-weight:500;
+      margin:0;
+    }
+    h1{
+      font-size:clamp(4.2rem,11vw,8.8rem);
+      line-height:.86;
+      letter-spacing:-.04em;
+    }
+    .cn-name{
+      font-family:"Noto Serif SC",serif;
+      font-size:clamp(1.25rem,3vw,2rem);
+      margin-top:22px;
+      letter-spacing:.18em;
+    }
+    .date{
+      margin:34px auto 12px;
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(1.7rem,4vw,2.8rem);
+      letter-spacing:.12em;
+    }
+    .location{
+      font-size:.9rem;
+      letter-spacing:.28em;
+      text-transform:uppercase;
+    }
+    .tagline{
+      max-width:620px;
+      margin:30px auto;
+      font-family:"Cormorant Garamond","Noto Serif SC",serif;
+      font-style:italic;
+      font-size:clamp(1.2rem,2.8vw,1.65rem);
+    }
+
+    .button{
+      display:inline-block;
+      margin-top:8px;
+      padding:14px 26px;
+      border:1px solid var(--espresso);
+      border-radius:999px;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      font-size:.76rem;
+      transition:.25s ease;
+      background:rgba(255,255,255,.34);
+      backdrop-filter:blur(8px);
+    }
+    .button:hover{
+      background:var(--espresso);
+      color:white;
+      transform:translateY(-2px);
+    }
+
+    .section{
+      padding:100px 22px;
+    }
+    .section-inner{
+      width:min(100%,980px);
+      margin:0 auto;
+    }
+    .section-title{
+      text-align:center;
+      margin-bottom:48px;
+    }
+    .section-title h2{
+      font-size:clamp(3rem,7vw,5.2rem);
+      line-height:1;
+    }
+    .section-title .cn{
+      margin-top:8px;
+      font-family:"Noto Serif SC",serif;
+      font-size:1rem;
+      letter-spacing:.12em;
+      color:var(--espresso);
+    }
+
+    .intro{
+      text-align:center;
+      max-width:720px;
+      margin:0 auto;
+      font-size:1.02rem;
+    }
+    .intro .cn-copy{
+      margin-top:22px;
+      font-family:"Noto Serif SC",serif;
+      color:#4b4542;
+    }
+
+    .big-date{
+      text-align:center;
+      font-family:"Cormorant Garamond",serif;
+      font-size:clamp(4rem,12vw,8.7rem);
+      line-height:.9;
+      color:var(--rose);
+      margin:52px 0 12px;
+      letter-spacing:-.03em;
+    }
+    .small-note{
+      text-align:center;
+      color:#6c625e;
+      font-size:.88rem;
+    }
+
+    .schedule{
+      display:grid;
+      gap:18px;
+      margin-top:48px;
+    }
+    .event-card{
+      background:rgba(255,255,255,.5);
+      border:1px solid var(--line);
+      border-radius:26px;
+      padding:30px;
+      display:grid;
+      grid-template-columns:150px 1fr;
+      gap:28px;
+      box-shadow:0 10px 40px rgba(74,61,55,.04);
+    }
+    .event-date{
+      font-family:"Cormorant Garamond",serif;
+      font-size:2rem;
+      color:var(--rose);
+      line-height:1;
+    }
+    .event-title{
+      font-family:"Cormorant Garamond","Noto Serif SC",serif;
+      font-size:2rem;
+      margin-bottom:6px;
+    }
+    .event-cn{
+      font-family:"Noto Serif SC",serif;
+      color:#5f5753;
+      margin-top:8px;
+    }
+
+    .rsvp-section{
+      background:var(--paper);
+    }
+    .rsvp-box{
+      max-width:760px;
+      margin:0 auto;
+      padding:44px;
+      border-radius:30px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      text-align:center;
+      background:white;
+    }
+    .rsvp-box p{margin:0 0 18px}
+    .rsvp-box .cn-copy{
+      font-family:"Noto Serif SC",serif;
+      color:#4e4743;
+    }
+    .accommodation{
+      margin:28px 0;
+      padding:22px;
+      border-radius:20px;
+      background:#f7f1ec;
+      font-family:"Cormorant Garamond","Noto Serif SC",serif;
+      font-size:1.35rem;
+    }
+    .deadline{
+      margin-top:24px;
+      font-size:.8rem;
+      letter-spacing:.16em;
+      text-transform:uppercase;
+      color:var(--espresso);
+    }
+    .deadline strong{
+      display:block;
+      margin-top:8px;
+      font-family:"Cormorant Garamond",serif;
+      font-size:2rem;
+      letter-spacing:.05em;
+    }
+
+    .footer{
+      min-height:70vh;
+      display:grid;
+      place-items:center;
+      text-align:center;
+      padding:80px 22px;
+      background:
+        radial-gradient(circle at 50% 10%, rgba(183,141,134,.18), transparent 34%),
+        var(--ivory);
+    }
+    .footer h2{
+      font-size:clamp(3.5rem,8vw,6.8rem);
+      line-height:.95;
+    }
+    .footer .cn{
+      margin-top:18px;
+      font-family:"Noto Serif SC",serif;
+      font-size:1.25rem;
+    }
+    .footer .signoff{
+      margin-top:36px;
+      font-family:"Cormorant Garamond",serif;
+      font-size:1.6rem;
+    }
+
+    @media (max-width:700px){
+      .section{padding:78px 18px}
+      .event-card{grid-template-columns:1fr;gap:12px;padding:24px}
+      .rsvp-box{padding:30px 20px}
+      .button{width:100%;max-width:320px}
+    }
+  </style>
+</head>
+
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">We’re getting married · 我们要结婚啦</div>
+      <h1>Grace <span style="font-style:italic;font-weight:400">&</span> Josh</h1>
+      <div class="cn-name">夏钧亚 & 乔世华</div>
+      <div class="date">05 · 10 · 2027</div>
+      <div class="location">Bali · 巴厘岛</div>
+      <div class="tagline">
+        We would love for you to be there.<br>
+        跨越山海，想与你一起见证这一天。
+      </div>
+      <a class="button" href="#rsvp">RSVP · 回复邀请</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Save Our Date</h2>
+          <div class="cn">为我们留出这一天</div>
+        </div>
+
+        <div class="intro">
+          <p>
+            We’re getting married in Bali, and it wouldn’t feel complete without the people we love most there with us.
+            Wherever you’ll be travelling from, we hope you’ll join us for this very special celebration.
+          </p>
+          <p class="cn-copy">
+            我们的婚礼将在巴厘岛举行。无论你从哪里出发，我们都真心希望，
+            你能来到这座美丽的海岛，与我们最亲爱的家人和朋友们一起，
+            见证这个对我们而言无比特别的时刻。
+          </p>
+        </div>
+
+        <div class="big-date">05.10.27</div>
+        <div class="small-note">
+          Tuesday, 5 October 2027 · 2027年10月5日 星期二<br>
+          Bali, Indonesia · 印度尼西亚 巴厘岛<br><br>
+          Venue to be announced · 婚礼场地即将公布
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Our Wedding</h2>
+          <div class="cn">婚礼安排</div>
+        </div>
+
+        <div class="schedule">
+          <article class="event-card">
+            <div class="event-date">04 OCT</div>
+            <div>
+              <div class="event-title">Welcome Gathering · 欢迎聚会</div>
+              <div>An evening together before the big day.</div>
+              <div class="event-cn">婚礼前，先一起喝一杯、见见老朋友。</div>
+              <div class="small-note" style="text-align:left;margin-top:10px">Details to come · 具体安排待公布</div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-date">05 OCT</div>
+            <div>
+              <div class="event-title">Our Wedding Day · 婚礼日</div>
+              <div>Ceremony · Dinner · Dancing · Celebrations</div>
+              <div class="event-cn">仪式 · 晚宴 · 派对</div>
+              <div class="small-note" style="text-align:left;margin-top:10px">Venue & timings to come · 场地及时间待公布</div>
+            </div>
+          </article>
+
+          <article class="event-card">
+            <div class="event-date">06 OCT</div>
+            <div>
+              <div class="event-title">One More Day Together · 再聚一天</div>
+              <div>Something relaxed after the wedding for anyone still on the island.</div>
+              <div class="event-cn">婚礼结束后，如果你还在岛上，我们想和大家再轻松地聚一聚。</div>
+              <div class="small-note" style="text-align:left;margin-top:10px">Details to come · 具体安排待公布</div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section rsvp-section" id="rsvp">
+      <div class="section-inner">
+        <div class="section-title">
+          <h2>Will You Be There?</h2>
+          <div class="cn">你会来吗？</div>
+        </div>
+
+        <div class="rsvp-box">
+          <p>Having you with us would mean the world.</p>
+
+          <div class="accommodation">
+            We’ll be arranging two nights of accommodation for our guests over the wedding celebrations.
+            <br><br>
+            我们会为宾客统一安排婚礼期间两晚的住宿。
+          </div>
+
+          <p>
+            As this is a destination wedding and many of you will be travelling internationally,
+            it would really help us with our planning to know whether you’re planning to join us in Bali.
+          </p>
+
+          <p class="cn-copy">
+            由于这是一场目的地婚礼，很多朋友会从英国和中国远道而来，
+            所以希望可以提前知道你是否计划来到巴厘岛，与我们一起庆祝。
+            这也会帮助我们更好地安排住宿和婚礼的各项准备。
+          </p>
+
+          <div class="deadline">
+            Please respond by · 请于以下日期前回复
+            <strong>13 SEPTEMBER 2026</strong>
+          </div>
+
+          <a class="button" style="margin-top:28px" 
+             href="https://docs.google.com/forms/d/1m6VjJXWO-jEOGEb4a5eSutgZgcWJG14OMlIUEzD797w/viewform"
+             target="_blank" rel="noopener">
+             RSVP NOW · 立即回复
+          </a>
+
+          <p class="small-note" style="margin-top:22px">
+            We know plans can change. This early RSVP simply helps us with our initial wedding and accommodation planning.<br><br>
+            我们知道距离婚礼还有一年多，计划也可能会有变化。这次回复主要是为了帮助我们提前安排婚礼及住宿。
+          </p>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div>
+      <h2>See You in Bali</h2>
+      <div class="cn">巴厘岛见</div>
+      <div class="tagline">
+        From London and China, to one little corner of Bali.<br>
+        从伦敦与中国，到巴厘岛的一场相聚。
+      </div>
+      <div class="signoff">
+        Grace & Josh<br>
+        夏钧亚 & 乔世华<br><br>
+        05 · 10 · 2027
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
