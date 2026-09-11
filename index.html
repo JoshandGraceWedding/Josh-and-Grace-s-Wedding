@@ -36,6 +36,65 @@
     }
     a{color:inherit;text-decoration:none}
 
+    /* Opening image: place opening-image.jpg beside this HTML file. */
+    body.opening-active{overflow:hidden}
+    .opening-screen{
+      position:fixed;
+      inset:0;
+      z-index:9999;
+      display:grid;
+      place-items:center;
+      width:100%;
+      height:100vh;
+      height:100dvh;
+      padding:0;
+      border:0;
+      cursor:pointer;
+      overflow:hidden;
+      background:#d8c8b5;
+      opacity:1;
+      visibility:visible;
+      transition:opacity 1.25s ease, visibility 0s linear 1.25s;
+    }
+    .opening-screen img{
+      width:100%;
+      height:100%;
+      object-fit:cover;
+      display:block;
+      transition:transform 1.5s ease;
+    }
+    .opening-screen::after{
+      content:"Click to open · 点击开启";
+      position:absolute;
+      left:50%;
+      bottom:max(34px, env(safe-area-inset-bottom));
+      transform:translateX(-50%);
+      padding:11px 20px;
+      border:1px solid rgba(255,255,255,.7);
+      border-radius:999px;
+      color:#fff;
+      background:rgba(45,41,39,.28);
+      box-shadow:0 8px 28px rgba(0,0,0,.15);
+      backdrop-filter:blur(8px);
+      -webkit-backdrop-filter:blur(8px);
+      font:500 .72rem/1 "Inter",system-ui,sans-serif;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      white-space:nowrap;
+    }
+    .opening-screen.is-dissolving{
+      opacity:0;
+      visibility:hidden;
+      pointer-events:none;
+    }
+    .opening-screen.is-dissolving img{transform:scale(1.025)}
+    .opening-screen:focus-visible{outline:3px solid #fff;outline-offset:-6px}
+
+    @media (prefers-reduced-motion:reduce){
+      .opening-screen{transition-duration:.25s}
+      .opening-screen img{transition:none}
+    }
+
     .hero{
       height:150vh;
       position:relative;
@@ -399,7 +458,14 @@
   </style>
 </head>
 
-<body>
+<body class="opening-active">
+  <!-- Replace opening-image.jpg with your chosen opening image.
+       Keep the image in the same folder as this HTML file. -->
+  <button class="opening-screen" id="openingScreen" type="button"
+          aria-label="Open the wedding invitation">
+    <img src="opening-image.jpg" alt="Grace and Josh's wedding invitation">
+  </button>
+
   <header class="hero">
     <div class="hero-stage">
       <div class="palm left"></div>
@@ -562,10 +628,25 @@
   </footer>
 
   <script>
+    const openingScreen = document.getElementById('openingScreen');
     const hero = document.querySelector('.hero');
     const heroInner = document.querySelector('.hero-inner');
     const cue = document.querySelector('.scroll-cue');
     const revealItems = document.querySelectorAll('.reveal');
+
+    function openInvitation() {
+      if (!openingScreen || openingScreen.classList.contains('is-dissolving')) return;
+
+      openingScreen.classList.add('is-dissolving');
+      document.body.classList.remove('opening-active');
+      updateHeroReveal();
+
+      openingScreen.addEventListener('transitionend', () => {
+        openingScreen.hidden = true;
+      }, { once:true });
+    }
+
+    openingScreen?.addEventListener('click', openInvitation);
 
     function updateHeroReveal() {
       const heroTop = hero.offsetTop;
