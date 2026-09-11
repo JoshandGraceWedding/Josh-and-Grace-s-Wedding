@@ -518,6 +518,19 @@
 </head>
 
 <body class="opening-active">
+
+<script>
+  if ("scrollRestoration" in history) {
+    history.scrollRestoration = "manual";
+  }
+
+  window.scrollTo(0, 0);
+
+  window.addEventListener("pageshow", function () {
+    window.scrollTo(0, 0);
+  });
+</script>
+  
   <!-- Replace opening-image.png with your chosen opening image.
        Keep the image in the same folder as this HTML file. -->
   <button class="opening-screen" id="openingScreen" type="button"
