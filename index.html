@@ -63,7 +63,7 @@
       display:block;
       transition:transform 1.5s ease;
     }
-    .opening-screen::after{
+    /*.opening-screen::after{
       content:"Click to open · 点击开启";
       position:absolute;
       left:50%;
@@ -81,7 +81,7 @@
       letter-spacing:.14em;
       text-transform:uppercase;
       white-space:nowrap;
-    }
+    }*/
     .opening-screen.is-dissolving{
       opacity:0;
       visibility:hidden;
@@ -285,66 +285,7 @@
     }
     .small-note{text-align:center;color:#6c625e;font-size:.88rem}
 
-    .polaroid-section{
-      background:
-        linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.68)),
-        radial-gradient(circle at 10% 20%, rgba(127,139,116,.11), transparent 24%),
-        radial-gradient(circle at 85% 85%, rgba(184,143,132,.12), transparent 24%);
-    }
-
-    .polaroid-grid{
-      display:grid;
-      grid-template-columns:repeat(4,1fr);
-      gap:24px;
-      align-items:start;
-      margin-top:44px;
-    }
-
-    .polaroid{
-      background:#fff;
-      padding:12px 12px 38px;
-      box-shadow:0 18px 38px rgba(75,61,54,.14);
-      position:relative;
-      transform-origin:center;
-      transition:transform .25s ease, box-shadow .25s ease;
-    }
-    .polaroid:nth-child(1){transform:rotate(-3deg)}
-    .polaroid:nth-child(2){transform:rotate(2deg) translateY(12px)}
-    .polaroid:nth-child(3){transform:rotate(-1deg) translateY(4px)}
-    .polaroid:nth-child(4){transform:rotate(3deg) translateY(10px)}
-    .polaroid:hover{
-      transform:rotate(0deg) translateY(-6px);
-      box-shadow:0 24px 44px rgba(75,61,54,.18);
-      z-index:2;
-    }
-
-    .photo-placeholder{
-      aspect-ratio:4/5;
-      display:grid;
-      place-items:center;
-      background:
-        linear-gradient(135deg,rgba(232,216,195,.8),rgba(247,241,231,.95)),
-        repeating-linear-gradient(45deg,transparent 0 8px,rgba(255,255,255,.22) 8px 16px);
-      border:1px solid rgba(75,61,54,.08);
-      color:#8b7f77;
-      font-family:"Cormorant Garamond",serif;
-      font-size:1.25rem;
-      text-align:center;
-      padding:18px;
-    }
-
-    .polaroid-caption{
-      position:absolute;
-      left:0;
-      right:0;
-      bottom:8px;
-      text-align:center;
-      font-family:"Cormorant Garamond",serif;
-      font-style:italic;
-      font-size:1.1rem;
-      color:#5b4b44;
-    }
-
+   
     .details-card{
       max-width:760px;
       margin:0 auto;
@@ -492,7 +433,7 @@
     <section class="section">
       <div class="section-inner reveal">
         <div class="section-title">
-          <h2>Save Our Date</h2>
+          <h2>Save The Date</h2>
           <div class="cn">为我们留出这一天</div>
         </div>
 
@@ -512,38 +453,12 @@
         <div class="small-note">
           Tuesday, 5 October 2027 · 2027年10月5日 星期二<br>
           Bali, Indonesia · 印度尼西亚 巴厘岛
+          Venue TBC · 场地待定
         </div>
       </div>
     </section>
 
-    <section class="section polaroid-section">
-      <div class="section-inner reveal">
-        <div class="section-title">
-          <h2>Our Little Moments</h2>
-          <div class="cn">我们的片刻</div>
-        </div>
-
-        <div class="polaroid-grid">
-          <div class="polaroid">
-            <div class="photo-placeholder">Photo 1<br>照片 1</div>
-            <div class="polaroid-caption">Moments</div>
-          </div>
-          <div class="polaroid">
-            <div class="photo-placeholder">Photo 2<br>照片 2</div>
-            <div class="polaroid-caption">Together</div>
-          </div>
-          <div class="polaroid">
-            <div class="photo-placeholder">Photo 3<br>照片 3</div>
-            <div class="polaroid-caption">In Bali</div>
-          </div>
-          <div class="polaroid">
-            <div class="photo-placeholder">Photo 4<br>照片 4</div>
-            <div class="polaroid-caption">Always</div>
-          </div>
-        </div>
-      </div>
-    </section>
-
+    
     <section class="section">
       <div class="section-inner reveal">
         <div class="section-title">
