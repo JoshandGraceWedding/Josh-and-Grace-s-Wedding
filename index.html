@@ -524,10 +524,29 @@
     history.scrollRestoration = "manual";
   }
 
-  window.scrollTo(0, 0);
+  // Prevent an old anchor from opening the invitation halfway down the page.
+  if (window.location.hash) {
+    history.replaceState(
+      null,
+      "",
+      window.location.pathname + window.location.search
+    );
+  }
+
+  function resetPageToTop() {
+    window.scrollTo(0, 0);
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+  }
+
+  resetPageToTop();
 
   window.addEventListener("pageshow", function () {
-    window.scrollTo(0, 0);
+    resetPageToTop();
+
+    // Mobile browsers can restore their previous position after pageshow.
+    setTimeout(resetPageToTop, 50);
+    setTimeout(resetPageToTop, 250);
   });
 </script>
   
@@ -764,12 +783,20 @@
     function openInvitation() {
       if (!openingScreen || openingScreen.classList.contains('is-dissolving')) return;
 
+      // Mobile browsers may have restored an old position behind the overlay.
+      resetPageToTop();
       openingScreen.classList.add('is-dissolving');
       document.body.classList.remove('opening-active');
-      updateHeroReveal();
+
+      requestAnimationFrame(() => {
+        resetPageToTop();
+        updateHeroReveal();
+      });
 
       openingScreen.addEventListener('transitionend', () => {
         openingScreen.hidden = true;
+        resetPageToTop();
+        updateHeroReveal();
       }, { once:true });
     }
 
