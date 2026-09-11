@@ -12,14 +12,16 @@
 
   <style>
     :root{
-      --ivory:#f7f2ea;
+      --ivory:#f7f1e7;
       --paper:#fffdf9;
-      --rose:#b78d86;
-      --sage:#99a18f;
-      --espresso:#4a3d37;
+      --sand:#e8d8c3;
+      --rose:#b88f84;
+      --sage:#7f8b74;
+      --palm:#5f6d59;
+      --espresso:#4b3d36;
       --ink:#2d2927;
-      --line:rgba(74,61,55,.16);
-      --shadow:0 24px 60px rgba(74,61,55,.12);
+      --line:rgba(75,61,54,.16);
+      --shadow:0 24px 60px rgba(75,61,54,.12);
     }
 
     *{box-sizing:border-box}
@@ -30,69 +32,92 @@
       background:var(--ivory);
       color:var(--ink);
       line-height:1.7;
+      overflow-x:hidden;
     }
-
     a{color:inherit;text-decoration:none}
-    img{max-width:100%;display:block}
 
     .hero{
       min-height:100vh;
       display:grid;
       place-items:center;
       text-align:center;
-      padding:32px 20px;
+      padding:40px 20px;
       position:relative;
       overflow:hidden;
+      /* HERO IMAGE: upload your photo to the same GitHub folder as index.html
+         and name it hero.jpg. The gradients keep the title readable. */
       background:
-        radial-gradient(circle at 20% 20%, rgba(183,141,134,.25), transparent 34%),
-        radial-gradient(circle at 80% 70%, rgba(153,161,143,.23), transparent 34%),
-        linear-gradient(145deg,#f8f1e9 0%,#eee2d7 48%,#e7ddd1 100%);
+        linear-gradient(rgba(40,32,28,.34), rgba(40,32,28,.42)),
+        url("hero.jpg") center center / cover no-repeat,
+        linear-gradient(155deg,#d9c0a5 0%,#c8ae91 45%,#8e9b8c 100%);
     }
 
-    .hero::before,
-    .hero::after{
+    .hero::before{
       content:"";
       position:absolute;
-      border:1px solid rgba(74,61,55,.12);
-      border-radius:50%;
+      inset:0;
+      background:
+        radial-gradient(circle at 78% 15%, rgba(255,255,255,.25), transparent 22%),
+        linear-gradient(180deg, transparent 0 72%, rgba(247,241,231,.92) 100%);
+      pointer-events:none;
     }
-    .hero::before{width:430px;height:430px;left:-180px;top:-160px}
-    .hero::after{width:520px;height:520px;right:-220px;bottom:-220px}
 
-    .hero-inner{position:relative;z-index:2;max-width:900px}
+    .palm{
+      position:absolute;
+      width:380px;
+      height:380px;
+      border-radius:50%;
+      filter:blur(.2px);
+      opacity:.18;
+      pointer-events:none;
+      background:
+        repeating-conic-gradient(from 185deg at 50% 50%,
+          transparent 0 8deg,
+          rgba(68,85,64,.9) 8deg 11deg,
+          transparent 11deg 18deg);
+    }
+    .palm.left{left:-220px;bottom:-110px;transform:rotate(-12deg)}
+    .palm.right{right:-210px;top:-130px;transform:rotate(20deg)}
+
+    .hero-inner{position:relative;z-index:2;max-width:900px;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.25)}
     .eyebrow{
       font-size:.78rem;
       letter-spacing:.3em;
       text-transform:uppercase;
-      color:var(--espresso);
-      margin-bottom:16px;
+      color:#fffdf9;
+      margin-bottom:20px;
     }
-    h1,h2,h3{
+    h1,h2{
       font-family:"Cormorant Garamond","Noto Serif SC",serif;
       font-weight:500;
       margin:0;
     }
     h1{
-      font-size:clamp(4.2rem,11vw,8.8rem);
+      font-size:clamp(4.5rem,11vw,9rem);
       line-height:.86;
       letter-spacing:-.04em;
+      color:#fffdf9;
+      text-shadow:0 6px 24px rgba(44,37,32,.16);
     }
     .cn-name{
       font-family:"Noto Serif SC",serif;
       font-size:clamp(1.25rem,3vw,2rem);
       margin-top:22px;
       letter-spacing:.18em;
+      color:#fffdf9;
     }
     .date{
-      margin:34px auto 12px;
+      margin:34px auto 10px;
       font-family:"Cormorant Garamond",serif;
-      font-size:clamp(1.7rem,4vw,2.8rem);
+      font-size:clamp(1.8rem,4vw,2.9rem);
       letter-spacing:.12em;
+      color:#fffdf9;
     }
     .location{
       font-size:.9rem;
       letter-spacing:.28em;
       text-transform:uppercase;
+      color:#fffdf9;
     }
     .tagline{
       max-width:620px;
@@ -100,42 +125,60 @@
       font-family:"Cormorant Garamond","Noto Serif SC",serif;
       font-style:italic;
       font-size:clamp(1.2rem,2.8vw,1.65rem);
+      color:#fffdf9;
     }
 
     .button{
       display:inline-block;
       margin-top:8px;
-      padding:14px 26px;
-      border:1px solid var(--espresso);
+      padding:14px 28px;
+      border:1px solid rgba(255,255,255,.8);
       border-radius:999px;
       letter-spacing:.14em;
       text-transform:uppercase;
       font-size:.76rem;
       transition:.25s ease;
-      background:rgba(255,255,255,.34);
+      background:rgba(255,255,255,.12);
+      color:white;
       backdrop-filter:blur(8px);
     }
-    .button:hover{
-      background:var(--espresso);
-      color:white;
-      transform:translateY(-2px);
+    .button:hover{background:white;color:var(--espresso);transform:translateY(-2px)}
+
+    .scroll-cue{
+      position:absolute;
+      left:50%;
+      bottom:26px;
+      transform:translateX(-50%);
+      z-index:3;
+      color:#fffdf9;
+      font-size:.72rem;
+      letter-spacing:.18em;
+      text-transform:uppercase;
+      opacity:.9;
+    }
+    .scroll-cue::after{
+      content:"↓";
+      display:block;
+      font-size:1.1rem;
+      margin-top:6px;
+      animation:bob 1.8s ease-in-out infinite;
+    }
+    @keyframes bob{
+      0%,100%{transform:translateY(0)}
+      50%{transform:translateY(7px)}
     }
 
-    .section{
-      padding:100px 22px;
+
+    .hero .button{
+      border-color:rgba(255,255,255,.9);
+      color:#fff;
+      background:rgba(255,255,255,.10);
     }
-    .section-inner{
-      width:min(100%,980px);
-      margin:0 auto;
-    }
-    .section-title{
-      text-align:center;
-      margin-bottom:48px;
-    }
-    .section-title h2{
-      font-size:clamp(3rem,7vw,5.2rem);
-      line-height:1;
-    }
+    .hero .button:hover{background:#fff;color:var(--espresso)}
+    .section{padding:100px 22px;position:relative}
+    .section-inner{width:min(100%,980px);margin:0 auto}
+    .section-title{text-align:center;margin-bottom:46px}
+    .section-title h2{font-size:clamp(3rem,7vw,5.2rem);line-height:1}
     .section-title .cn{
       margin-top:8px;
       font-family:"Noto Serif SC",serif;
@@ -165,47 +208,86 @@
       margin:52px 0 12px;
       letter-spacing:-.03em;
     }
-    .small-note{
-      text-align:center;
-      color:#6c625e;
-      font-size:.88rem;
+    .small-note{text-align:center;color:#6c625e;font-size:.88rem}
+
+    .polaroid-section{
+      background:
+        linear-gradient(180deg, rgba(255,255,255,.34), rgba(255,255,255,.68)),
+        radial-gradient(circle at 10% 20%, rgba(127,139,116,.11), transparent 24%),
+        radial-gradient(circle at 85% 85%, rgba(184,143,132,.12), transparent 24%);
     }
 
-    .schedule{
+    .polaroid-grid{
       display:grid;
-      gap:18px;
-      margin-top:48px;
+      grid-template-columns:repeat(4,1fr);
+      gap:24px;
+      align-items:start;
+      margin-top:44px;
     }
-    .event-card{
-      background:rgba(255,255,255,.5);
-      border:1px solid var(--line);
-      border-radius:26px;
-      padding:30px;
+
+    .polaroid{
+      background:#fff;
+      padding:12px 12px 38px;
+      box-shadow:0 18px 38px rgba(75,61,54,.14);
+      position:relative;
+      transform-origin:center;
+      transition:transform .25s ease, box-shadow .25s ease;
+    }
+    .polaroid:nth-child(1){transform:rotate(-3deg)}
+    .polaroid:nth-child(2){transform:rotate(2deg) translateY(12px)}
+    .polaroid:nth-child(3){transform:rotate(-1deg) translateY(4px)}
+    .polaroid:nth-child(4){transform:rotate(3deg) translateY(10px)}
+    .polaroid:hover{
+      transform:rotate(0deg) translateY(-6px);
+      box-shadow:0 24px 44px rgba(75,61,54,.18);
+      z-index:2;
+    }
+
+    .photo-placeholder{
+      aspect-ratio:4/5;
       display:grid;
-      grid-template-columns:150px 1fr;
-      gap:28px;
-      box-shadow:0 10px 40px rgba(74,61,55,.04);
-    }
-    .event-date{
+      place-items:center;
+      background:
+        linear-gradient(135deg,rgba(232,216,195,.8),rgba(247,241,231,.95)),
+        repeating-linear-gradient(45deg,transparent 0 8px,rgba(255,255,255,.22) 8px 16px);
+      border:1px solid rgba(75,61,54,.08);
+      color:#8b7f77;
       font-family:"Cormorant Garamond",serif;
-      font-size:2rem;
-      color:var(--rose);
-      line-height:1;
-    }
-    .event-title{
-      font-family:"Cormorant Garamond","Noto Serif SC",serif;
-      font-size:2rem;
-      margin-bottom:6px;
-    }
-    .event-cn{
-      font-family:"Noto Serif SC",serif;
-      color:#5f5753;
-      margin-top:8px;
+      font-size:1.25rem;
+      text-align:center;
+      padding:18px;
     }
 
-    .rsvp-section{
-      background:var(--paper);
+    .polaroid-caption{
+      position:absolute;
+      left:0;
+      right:0;
+      bottom:8px;
+      text-align:center;
+      font-family:"Cormorant Garamond",serif;
+      font-style:italic;
+      font-size:1.1rem;
+      color:#5b4b44;
     }
+
+    .details-card{
+      max-width:760px;
+      margin:0 auto;
+      text-align:center;
+      padding:42px;
+      border:1px solid var(--line);
+      border-radius:28px;
+      background:rgba(255,255,255,.58);
+      box-shadow:var(--shadow);
+    }
+
+    .details-card .cn-copy{
+      margin-top:18px;
+      font-family:"Noto Serif SC",serif;
+      color:#4e4743;
+    }
+
+    .rsvp-section{background:var(--paper)}
     .rsvp-box{
       max-width:760px;
       margin:0 auto;
@@ -225,7 +307,7 @@
       margin:28px 0;
       padding:22px;
       border-radius:20px;
-      background:#f7f1ec;
+      background:#f4ede5;
       font-family:"Cormorant Garamond","Noto Serif SC",serif;
       font-size:1.35rem;
     }
@@ -243,44 +325,70 @@
       font-size:2rem;
       letter-spacing:.05em;
     }
+    .rsvp-box .button{
+      border-color:var(--palm);
+      background:var(--palm);
+      color:white;
+    }
+    .rsvp-box .button:hover{
+      background:#4f5d49;
+      color:white;
+    }
 
     .footer{
-      min-height:70vh;
+      min-height:64vh;
       display:grid;
       place-items:center;
       text-align:center;
       padding:80px 22px;
       background:
-        radial-gradient(circle at 50% 10%, rgba(183,141,134,.18), transparent 34%),
-        var(--ivory);
+        radial-gradient(circle at 50% 10%, rgba(184,143,132,.17), transparent 34%),
+        linear-gradient(180deg,var(--ivory),#eadbc9);
     }
-    .footer h2{
-      font-size:clamp(3.5rem,8vw,6.8rem);
-      line-height:.95;
-    }
+    .footer h2{font-size:clamp(3.5rem,8vw,6.8rem);line-height:.95}
     .footer .cn{
       margin-top:18px;
       font-family:"Noto Serif SC",serif;
       font-size:1.25rem;
     }
     .footer .signoff{
-      margin-top:36px;
+      margin-top:34px;
       font-family:"Cormorant Garamond",serif;
       font-size:1.6rem;
     }
 
+    .reveal{
+      opacity:0;
+      transform:translateY(30px);
+      transition:opacity .8s ease, transform .8s ease;
+    }
+    .reveal.visible{
+      opacity:1;
+      transform:translateY(0);
+    }
+
+    @media (max-width:900px){
+      .polaroid-grid{grid-template-columns:repeat(2,1fr);max-width:650px;margin-left:auto;margin-right:auto}
+    }
     @media (max-width:700px){
       .section{padding:78px 18px}
-      .event-card{grid-template-columns:1fr;gap:12px;padding:24px}
-      .rsvp-box{padding:30px 20px}
+      .rsvp-box,.details-card{padding:30px 20px}
       .button{width:100%;max-width:320px}
+    }
+    @media (max-width:520px){
+      .polaroid-grid{grid-template-columns:1fr 1fr;gap:16px}
+      .polaroid{padding:8px 8px 30px}
+      .polaroid-caption{font-size:.95rem}
     }
   </style>
 </head>
 
 <body>
   <header class="hero">
-    <div class="hero-inner">
+    <div class="palm left"></div>
+    <div class="palm right"></div>
+
+    <div class="hero-inner reveal">
       <div class="eyebrow">We’re getting married · 我们要结婚啦</div>
       <h1>Grace <span style="font-style:italic;font-weight:400">&</span> Josh</h1>
       <div class="cn-name">夏钧亚 & 乔世华</div>
@@ -292,11 +400,13 @@
       </div>
       <a class="button" href="#rsvp">RSVP · 回复邀请</a>
     </div>
+
+    <div class="scroll-cue">Scroll</div>
   </header>
 
   <main>
     <section class="section">
-      <div class="section-inner">
+      <div class="section-inner reveal">
         <div class="section-title">
           <h2>Save Our Date</h2>
           <div class="cn">为我们留出这一天</div>
@@ -317,55 +427,61 @@
         <div class="big-date">05.10.27</div>
         <div class="small-note">
           Tuesday, 5 October 2027 · 2027年10月5日 星期二<br>
-          Bali, Indonesia · 印度尼西亚 巴厘岛<br><br>
-          Venue to be announced · 婚礼场地即将公布
+          Bali, Indonesia · 印度尼西亚 巴厘岛
+        </div>
+      </div>
+    </section>
+
+    <section class="section polaroid-section">
+      <div class="section-inner reveal">
+        <div class="section-title">
+          <h2>Our Little Moments</h2>
+          <div class="cn">我们的片刻</div>
+        </div>
+
+        <div class="polaroid-grid">
+          <div class="polaroid">
+            <div class="photo-placeholder">Photo 1<br>照片 1</div>
+            <div class="polaroid-caption">Moments</div>
+          </div>
+          <div class="polaroid">
+            <div class="photo-placeholder">Photo 2<br>照片 2</div>
+            <div class="polaroid-caption">Together</div>
+          </div>
+          <div class="polaroid">
+            <div class="photo-placeholder">Photo 3<br>照片 3</div>
+            <div class="polaroid-caption">In Bali</div>
+          </div>
+          <div class="polaroid">
+            <div class="photo-placeholder">Photo 4<br>照片 4</div>
+            <div class="polaroid-caption">Always</div>
+          </div>
         </div>
       </div>
     </section>
 
     <section class="section">
-      <div class="section-inner">
+      <div class="section-inner reveal">
         <div class="section-title">
-          <h2>Our Wedding</h2>
-          <div class="cn">婚礼安排</div>
+          <h2>Details to Be Confirmed</h2>
+          <div class="cn">更多细节即将公布</div>
         </div>
 
-        <div class="schedule">
-          <article class="event-card">
-            <div class="event-date">04 OCT</div>
-            <div>
-              <div class="event-title">Welcome Gathering · 欢迎聚会</div>
-              <div>An evening together before the big day.</div>
-              <div class="event-cn">婚礼前，先一起喝一杯、见见老朋友。</div>
-              <div class="small-note" style="text-align:left;margin-top:10px">Details to come · 具体安排待公布</div>
-            </div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-date">05 OCT</div>
-            <div>
-              <div class="event-title">Our Wedding Day · 婚礼日</div>
-              <div>Ceremony · Dinner · Dancing · Celebrations</div>
-              <div class="event-cn">仪式 · 晚宴 · 派对</div>
-              <div class="small-note" style="text-align:left;margin-top:10px">Venue & timings to come · 场地及时间待公布</div>
-            </div>
-          </article>
-
-          <article class="event-card">
-            <div class="event-date">06 OCT</div>
-            <div>
-              <div class="event-title">One More Day Together · 再聚一天</div>
-              <div>Something relaxed after the wedding for anyone still on the island.</div>
-              <div class="event-cn">婚礼结束后，如果你还在岛上，我们想和大家再轻松地聚一聚。</div>
-              <div class="small-note" style="text-align:left;margin-top:10px">Details to come · 具体安排待公布</div>
-            </div>
-          </article>
+        <div class="details-card">
+          <p>
+            We’re so excited to celebrate with you in Bali.
+            More details about the wedding, timings and celebrations will follow once everything is confirmed.
+          </p>
+          <p class="cn-copy">
+            我们非常期待与你在巴厘岛相聚。
+            关于婚礼场地、时间和庆祝安排的更多信息，会在确认后第一时间与你分享。
+          </p>
         </div>
       </div>
     </section>
 
     <section class="section rsvp-section" id="rsvp">
-      <div class="section-inner">
+      <div class="section-inner reveal">
         <div class="section-title">
           <h2>Will You Be There?</h2>
           <div class="cn">你会来吗？</div>
@@ -396,7 +512,7 @@
             <strong>13 SEPTEMBER 2026</strong>
           </div>
 
-          <a class="button" style="margin-top:28px" 
+          <a class="button" style="margin-top:28px"
              href="https://docs.google.com/forms/d/1m6VjJXWO-jEOGEb4a5eSutgZgcWJG14OMlIUEzD797w/viewform"
              target="_blank" rel="noopener">
              RSVP NOW · 立即回复
@@ -412,10 +528,10 @@
   </main>
 
   <footer class="footer">
-    <div>
+    <div class="reveal">
       <h2>See You in Bali</h2>
       <div class="cn">巴厘岛见</div>
-      <div class="tagline">
+      <div class="tagline" style="color:var(--espresso)">
         From London and China, to one little corner of Bali.<br>
         从伦敦与中国，到巴厘岛的一场相聚。
       </div>
@@ -426,5 +542,20 @@
       </div>
     </div>
   </footer>
+
+  <script>
+    const revealItems = document.querySelectorAll('.reveal');
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    revealItems.forEach(item => observer.observe(item));
+  </script>
 </body>
 </html>
