@@ -63,7 +63,7 @@
       display:block;
       transition:transform 1.5s ease;
     }
-    /*.opening-screen::after{
+    .opening-screen::after{
       content:"Click to open · 点击开启";
       position:absolute;
       left:50%;
@@ -81,7 +81,7 @@
       letter-spacing:.14em;
       text-transform:uppercase;
       white-space:nowrap;
-    }*/
+    }
     .opening-screen.is-dissolving{
       opacity:0;
       visibility:hidden;
@@ -285,7 +285,6 @@
     }
     .small-note{text-align:center;color:#6c625e;font-size:.88rem}
 
-   
     .details-card{
       max-width:760px;
       margin:0 auto;
@@ -301,6 +300,40 @@
       margin-top:18px;
       font-family:"Noto Serif SC",serif;
       color:#4e4743;
+    }
+    .event-grid{
+      display:grid;
+      grid-template-columns:repeat(3,1fr);
+      gap:16px;
+    }
+    .event-box{
+      padding:26px 16px;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:var(--paper);
+    }
+    .event-date{
+      font-family:"Cormorant Garamond",serif;
+      font-size:1.9rem;
+      line-height:1;
+      color:var(--rose);
+    }
+    .event-name{
+      margin-top:12px;
+      font-family:"Cormorant Garamond",serif;
+      font-size:1.3rem;
+      color:var(--espresso);
+    }
+    .event-cn{
+      margin-top:5px;
+      font-family:"Noto Serif SC",serif;
+      font-size:.9rem;
+      color:#4e4743;
+    }
+    .accommodation-note{
+      margin:28px 0 0;
+      padding-top:24px;
+      border-top:1px solid var(--line);
     }
 
     .rsvp-section{background:var(--paper)}
@@ -318,14 +351,6 @@
     .rsvp-box .cn-copy{
       font-family:"Noto Serif SC",serif;
       color:#4e4743;
-    }
-    .accommodation{
-      margin:28px 0;
-      padding:22px;
-      border-radius:20px;
-      background:#f4ede5;
-      font-family:"Cormorant Garamond","Noto Serif SC",serif;
-      font-size:1.35rem;
     }
     .deadline{
       margin-top:24px;
@@ -350,6 +375,102 @@
       background:#4f5d49;
       color:white;
     }
+    .rsvp-form{
+      margin-top:30px;
+      text-align:left;
+    }
+    .form-group{
+      margin-top:24px;
+      padding:0;
+      border:0;
+    }
+    .form-label,
+    .form-group legend{
+      display:block;
+      width:100%;
+      margin-bottom:10px;
+      font-size:.82rem;
+      font-weight:500;
+      letter-spacing:.08em;
+      color:var(--espresso);
+    }
+    .form-label span,
+    .form-group legend span{
+      font-family:"Noto Serif SC",serif;
+      font-weight:400;
+    }
+    .name-input{
+      width:100%;
+      padding:14px 16px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:var(--paper);
+      color:var(--ink);
+      font:inherit;
+      outline:none;
+      transition:border-color .2s ease,box-shadow .2s ease;
+    }
+    .name-input:focus{
+      border-color:var(--sage);
+      box-shadow:0 0 0 3px rgba(127,139,116,.14);
+    }
+    .choice-row{
+      display:grid;
+      grid-template-columns:1fr 1fr;
+      gap:12px;
+    }
+    .choice-button{position:relative}
+    .choice-button input{
+      position:absolute;
+      opacity:0;
+      pointer-events:none;
+    }
+    .choice-button span{
+      display:block;
+      padding:13px 16px;
+      border:1px solid var(--line);
+      border-radius:14px;
+      background:var(--paper);
+      text-align:center;
+      cursor:pointer;
+      transition:.2s ease;
+    }
+    .choice-button input:focus-visible + span{
+      outline:3px solid rgba(127,139,116,.3);
+      outline-offset:2px;
+    }
+    .choice-button input:checked + span{
+      border-color:var(--palm);
+      background:var(--palm);
+      color:#fff;
+    }
+    .plus-one-group[hidden]{display:none}
+    .submit-rsvp{
+      display:block;
+      width:100%;
+      margin-top:28px;
+      padding:15px 24px;
+      border:1px solid var(--palm);
+      border-radius:999px;
+      background:var(--palm);
+      color:#fff;
+      font:500 .78rem/1 "Inter",system-ui,sans-serif;
+      letter-spacing:.14em;
+      text-transform:uppercase;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .submit-rsvp:hover{background:#4f5d49;transform:translateY(-2px)}
+    .submit-rsvp:disabled{opacity:.65;cursor:wait;transform:none}
+    .form-status{
+      min-height:28px;
+      margin-top:18px;
+      text-align:center;
+      font-family:"Cormorant Garamond","Noto Serif SC",serif;
+      font-size:1.2rem;
+      color:var(--palm);
+    }
+    .response-frame{display:none}
 
     .footer{
       min-height:64vh;
@@ -384,17 +505,14 @@
     }
 
     @media (max-width:900px){
-      .polaroid-grid{grid-template-columns:repeat(2,1fr);max-width:650px;margin-left:auto;margin-right:auto}
     }
     @media (max-width:700px){
       .section{padding:78px 18px}
       .rsvp-box,.details-card{padding:30px 20px}
+      .event-grid{grid-template-columns:1fr}
       .button{width:100%;max-width:320px}
     }
     @media (max-width:520px){
-      .polaroid-grid{grid-template-columns:1fr 1fr;gap:16px}
-      .polaroid{padding:8px 8px 30px}
-      .polaroid-caption{font-size:.95rem}
     }
   </style>
 </head>
@@ -404,7 +522,7 @@
        Keep the image in the same folder as this HTML file. -->
   <button class="opening-screen" id="openingScreen" type="button"
           aria-label="Open the wedding invitation">
-    <img src="ChatGPT Image 2026年9月11日 21_48_13.png" alt="Grace and Josh's wedding invitation">
+    <img src="opening-image.png" alt="Grace and Josh's wedding invitation">
   </button>
 
   <header class="hero">
@@ -433,7 +551,7 @@
     <section class="section">
       <div class="section-inner reveal">
         <div class="section-title">
-          <h2>Save The Date</h2>
+          <h2>Save the Date</h2>
           <div class="cn">为我们留出这一天</div>
         </div>
 
@@ -453,28 +571,40 @@
         <div class="small-note">
           Tuesday, 5 October 2027 · 2027年10月5日 星期二<br>
           Bali, Indonesia · 印度尼西亚 巴厘岛
-          Venue TBC · 场地待定
         </div>
       </div>
     </section>
 
-    
     <section class="section">
       <div class="section-inner reveal">
         <div class="section-title">
-          <h2>Details to Be Confirmed</h2>
-          <div class="cn">更多细节即将公布</div>
+          <h2>Three Days Together</h2>
+          <div class="cn">与我们共度三天</div>
         </div>
 
         <div class="details-card">
-          <p>
-            We’re so excited to celebrate with you in Bali.
-            More details about the wedding, timings and celebrations will follow once everything is confirmed.
-          </p>
-          <p class="cn-copy">
-            我们非常期待与你在巴厘岛相聚。
-            关于婚礼场地、时间和庆祝安排的更多信息，会在确认后第一时间与你分享。
-          </p>
+          <div class="event-grid">
+            <div class="event-box">
+              <div class="event-date">4 October</div>
+              <div class="event-name">Welcome Dinner</div>
+              <div class="event-cn">10月4日 · 欢迎晚宴</div>
+            </div>
+            <div class="event-box">
+              <div class="event-date">5 October</div>
+              <div class="event-name">The Wedding</div>
+              <div class="event-cn">10月5日 · 婚礼</div>
+            </div>
+            <div class="event-box">
+              <div class="event-date">6 October</div>
+              <div class="event-name">A Day to Relax Together</div>
+              <div class="event-cn">10月6日 · 一起轻松相聚</div>
+            </div>
+          </div>
+
+          <div class="accommodation-note">
+            We will be covering accommodation for all guests for the nights of 4 and 5 October.
+            <div class="cn-copy">我们将为所有宾客安排并承担10月4日和5日两晚的住宿费用。</div>
+          </div>
         </div>
       </div>
     </section>
@@ -489,12 +619,6 @@
         <div class="rsvp-box">
           <p>Having you with us would mean the world.</p>
 
-          <div class="accommodation">
-            We’ll be arranging two nights of accommodation for our guests over the wedding celebrations.
-            <br><br>
-            我们会为宾客统一安排婚礼期间两晚的住宿。
-          </div>
-
           <p>
             As this is a destination wedding and many of you will be travelling internationally,
             it would really help us with our planning to know whether you’re planning to join us in Bali.
@@ -508,14 +632,52 @@
 
           <div class="deadline">
             Please respond by · 请于以下日期前回复
-            <strong>13 SEPTEMBER 2026</strong>
+            <strong>30 SEPTEMBER 2026</strong>
           </div>
 
-          <a class="button" style="margin-top:28px"
-             href="https://docs.google.com/forms/d/1m6VjJXWO-jEOGEb4a5eSutgZgcWJG14OMlIUEzD797w/viewform"
-             target="_blank" rel="noopener">
-             RSVP NOW · 立即回复
-          </a>
+          <form class="rsvp-form" id="rsvpForm"
+                action="https://docs.google.com/forms/d/e/1FAIpQLScHd8h2cYgC6e_aZgdegkzEik2ocVj6UPM7QswT4oL-SITnMQ/formResponse"
+                method="post" target="rsvpResponseFrame">
+            <label class="form-label" for="guestName">
+              Your name · <span>你的姓名</span>
+            </label>
+            <input class="name-input" id="guestName" name="entry.1697403540"
+                   type="text" autocomplete="name" required>
+
+            <fieldset class="form-group">
+              <legend>Will you be attending? · <span>你会参加吗？</span></legend>
+              <div class="choice-row">
+                <label class="choice-button">
+                  <input type="radio" name="entry.424331488" value="Yes" required>
+                  <span>Yes · 会参加</span>
+                </label>
+                <label class="choice-button">
+                  <input type="radio" name="entry.424331488" value="No" required>
+                  <span>No · 无法参加</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <fieldset class="form-group plus-one-group" id="plusOneGroup" hidden>
+              <legend>Will you bring a plus one? · <span>你会携伴参加吗？</span></legend>
+              <div class="choice-row">
+                <label class="choice-button">
+                  <input type="radio" name="entry.908403942" value="Yes">
+                  <span>Yes · 会</span>
+                </label>
+                <label class="choice-button">
+                  <input type="radio" name="entry.908403942" value="No">
+                  <span>No · 不会</span>
+                </label>
+              </div>
+            </fieldset>
+
+            <button class="submit-rsvp" id="submitRsvp" type="submit">
+              Send RSVP · 提交回复
+            </button>
+            <div class="form-status" id="formStatus" role="status" aria-live="polite"></div>
+          </form>
+          <iframe class="response-frame" name="rsvpResponseFrame" title="RSVP response"></iframe>
 
           <p class="small-note" style="margin-top:22px">
             We know plans can change. This early RSVP simply helps us with our initial wedding and accommodation planning.<br><br>
@@ -531,8 +693,8 @@
       <h2>See You in Bali</h2>
       <div class="cn">巴厘岛见</div>
       <div class="tagline" style="color:var(--espresso)">
-        From London and China, to one little corner of Bali.<br>
-        从伦敦与中国，到巴厘岛的一场相聚。
+        From the UK and China, to one little corner of Bali.<br>
+        从英国与中国，到巴厘岛的一场相聚。
       </div>
       <div class="signoff">
         Grace & Josh<br>
@@ -548,6 +710,41 @@
     const heroInner = document.querySelector('.hero-inner');
     const cue = document.querySelector('.scroll-cue');
     const revealItems = document.querySelectorAll('.reveal');
+    const rsvpForm = document.getElementById('rsvpForm');
+    const plusOneGroup = document.getElementById('plusOneGroup');
+    const plusOneInputs = plusOneGroup?.querySelectorAll('input[type="radio"]');
+    const submitRsvp = document.getElementById('submitRsvp');
+    const formStatus = document.getElementById('formStatus');
+    const responseFrame = document.querySelector('.response-frame');
+    let rsvpSubmitting = false;
+
+    document.querySelectorAll('input[name="entry.424331488"]').forEach(input => {
+      input.addEventListener('change', () => {
+        const attending = input.value === 'Yes';
+        plusOneGroup.hidden = !attending;
+
+        plusOneInputs.forEach(option => {
+          option.required = attending;
+          if (!attending) option.checked = option.value === 'No';
+          else option.checked = false;
+        });
+      });
+    });
+
+    rsvpForm?.addEventListener('submit', () => {
+      rsvpSubmitting = true;
+      submitRsvp.disabled = true;
+      formStatus.textContent = 'Sending your RSVP… · 正在提交…';
+    });
+
+    responseFrame?.addEventListener('load', () => {
+      if (!rsvpSubmitting) return;
+      rsvpSubmitting = false;
+      submitRsvp.disabled = false;
+      formStatus.textContent = 'Thank you — your RSVP has been received! · 谢谢，你的回复已收到！';
+      rsvpForm.reset();
+      plusOneGroup.hidden = true;
+    });
 
     function openInvitation() {
       if (!openingScreen || openingScreen.classList.contains('is-dissolving')) return;
